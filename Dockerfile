@@ -1,5 +1,21 @@
 FROM ubuntu
-CMD cd/opt
-CMD sudo apt install wget -y
-RUN wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.rep
-RUN rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+FROM jenkins:1.565.3
+
+MAINTAINER RAJESH<MEKALA>
+
+RUN mkdir -p /usr
+
+COPY .  /usr/lib/jenkins/maven-webs-app.war
+
+CMD ("ls","l","ls -la")
+
+ENTRYPOINT (pwd)
+
+ENV group =jenkins
+
+ARG usr=jenkins
+
+LABEL version 1
+
+EXPOSE 8080
